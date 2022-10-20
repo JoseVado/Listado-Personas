@@ -8,18 +8,7 @@ import { PersonasService } from './personas.service';
   styleUrls: ['./app.component.css'],
   providers: [PersonasService]
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   titulo = 'Listado de personas';
-  personas: Persona[] = [];
 
-  constructor(private personasService: PersonasService){}
-  ngOnInit(): void {
-    this.personas = this.personasService.personas;
-  }
-  /*
-  personaAgregada(persona:Persona) {
-    //this.personas.push(persona);
-
-    this.personasService.personaAgregada(persona);
-  }*/
 }
