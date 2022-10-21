@@ -1,22 +1,40 @@
-<form class="item">
-  <input
-    type="text"
-    name="nombre"
-    id="nombre"
-    placeholder="Nombre"
-    #nombreInput
-  />
-  <!-- [(ngModel)]="nombreInput" -->
+<div class="box">
+  <form
+    class="item"
+    #f="ngForm"
+    (ngSubmit)="f.form.valid && onGuardarPersona()"
+  >
+    <input
+      type="text"
+      name="nombre"
+      id="nombre"
+      placeholder="Nombre"
+      [(ngModel)]="nombre"
+      required
+    />
+    <!-- [(ngModel)]="nombreInput" -->
 
-  <input
-    type="text"
-    name="apellido"
-    id="apellido"
-    placeholder="Apellido"
-    #apelldioInput
-  />
-  <!-- [(ngModel)]="apellidoInput" -->
+    <input
+      type="text"
+      name="apellido"
+      id="apellido"
+      placeholder="Apellido"
+      [(ngModel)]="apellido"
+      required
+    />
+    <!-- [(ngModel)]="apellidoInput" -->
 
-  <!-- agregarPersona(nombreInput,apelldioInput) -->
-  <button type="submit" (click)="agregarPersona()">+</button>
-</form>
+    <!-- agregarPersona(nombreInput,apelldioInput) -->
+    <button type="submit" style="cursor: pointer">+</button>
+
+    <button
+      *ngIf="index != null"
+      type="submit"
+      style="cursor: pointer"
+      class="buttonRed"
+      (click)="eliminarPersona()"
+    >
+      -
+    </button>
+  </form>
+</div>

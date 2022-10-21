@@ -20,4 +20,17 @@ export class PersonasService {
     );
     this.personas.push(persona);
   }
+  encontrarPersona(index: number) {
+    return this.personas[index];
+  }
+
+  modificarPersona(index: number, personaModificar: Persona) {
+    let personaGuardada = this.personas[index];
+    personaGuardada.nombre = personaModificar.nombre;
+    personaGuardada.apellido = personaModificar.apellido;
+  }
+
+  eliminarPersona(index: number) {
+    this.personas.splice(index, 1);
+  }
 }
