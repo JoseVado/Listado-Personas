@@ -6,9 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonaComponent } from './personas/persona/persona.component';
 import { FormularioComponent } from './personas/formulario/formulario.component';
-import { LogginService } from './LogginService.service';
+//import { LoginService } from './LoginService.service';
 import { PersonasComponent } from './personas/personas.component';
 import { ErrorComponent } from './error/error.component';
+import { DataServices } from './data.services';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -17,14 +20,16 @@ import { ErrorComponent } from './error/error.component';
     PersonaComponent,
     FormularioComponent,
     PersonasComponent,
-    ErrorComponent
+    ErrorComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
-  providers: [LogginService],
-  bootstrap: [AppComponent]
+  providers: [DataServices],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

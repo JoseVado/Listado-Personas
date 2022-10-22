@@ -6,7 +6,6 @@ import {
   ElementRef,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LogginService } from '../../LogginService.service';
 import { Persona } from '../../persona.model';
 import { PersonasService } from '../../personas.service';
 
@@ -27,7 +26,6 @@ export class FormularioComponent {
   modoEdicion: number;
 
   constructor(
-    private logginService: LogginService,
     private personaService: PersonasService,
     private router: Router,
     private route: ActivatedRoute
