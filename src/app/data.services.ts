@@ -1,31 +1,37 @@
 import {HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core';
+import { LoginService } from './login/login.services';
 import { Persona } from './persona.model';
 
 @Injectable()
 export class DataServices{
-    constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+    private loginServices: LoginService
+  ) { }
 
-    cargarPersonas() {
+  cargarPersonas() {
+    const token = this.loginServices.getIdToken();
         return this.httpClient.get(
-          'https://listado-personas-7feb6-default-rtdb.firebaseio.com/datos.json'
+          'https://listado-personas-7feb6-default-rtdb.firebaseio.com/datos.json?auth=' + token
         );
     }
     
     //Guradar personas
-    guardarPersonas(personas: Persona[]) {
+  guardarPersonas(personas: Persona[]) {
+      const token = this.loginServices.getIdToken();
         this.httpClient.put(
-          'https://listado-personas-7feb6-default-rtdb.firebaseio.com/datos.json', personas
+          'https://listado-personas-7feb6-default-rtdb.firebaseio.com/datos.json?auth='+token, personas
         ).subscribe(
             response => console.log("Resultado de guardar las Personas: " + response),
             error => console.log("Error al guardar Personas: " + error)
         );
     }
 
-    modificarPersona(index: number, persona: Persona) {
+  modificarPersona(index: number, persona: Persona) {
+      const token = this.loginServices.getIdToken();
         let url: string;
         url =
-            'https://listado-personas-7feb6-default-rtdb.firebaseio.com/datos/' + index +'.json';
+            'https://listado-personas-7feb6-default-rtdb.firebaseio.com/datos/' + index +'.json?auth=' + token;
         this.httpClient.put(url, persona).subscribe(
             response => console.log("Resultado Modificar Persona: " + response)
             ,
@@ -34,12 +40,13 @@ export class DataServices{
             
     }
 
-    eliminarPersona(index: number) {
+  eliminarPersona(index: number) {
+      const token = this.loginServices.getIdToken();
         let url: string;
         url =
           'https://listado-personas-7feb6-default-rtdb.firebaseio.com/datos/' +
           index +
-          '.json';
+          '.json?auth=' + token;
         this.httpClient.delete(url).subscribe(
           (response) => console.log('Resultado Eliminar Persona: ' + response),
           (error) => console.log('Error eliminar Persona: ' + error)

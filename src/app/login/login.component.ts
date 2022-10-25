@@ -9,7 +9,7 @@ import { LoginService } from './login.services';
 })
 export class LoginComponent implements OnInit {
   //private loginService: LoginService
-  constructor() {}
+  constructor(private loginService: LoginService) {}
 
   ngOnInit(): void {}
 
@@ -17,6 +17,6 @@ export class LoginComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
 
-    //this.loginService.login(email, password);
+    this.loginService.login(email, password);
   }
 }
